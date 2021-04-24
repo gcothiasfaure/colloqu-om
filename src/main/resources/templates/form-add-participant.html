@@ -1,0 +1,79 @@
+<!-- Formulaire d'ajout d'un participant (si il existe au moins un evenement) -->
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Colloqu'OM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+
+	<div th:if="${exists}" style="width:50%;" class="container mt-5 mb-5">
+	
+		<!-- Si il existe au moins un evenement -->
+	
+		<div class="mt-5 mb-3 d-flex justify-content-between">
+			<h2>Ajouter un participant</h2>
+			<a style="margin-top: 13px;" href="javascript:history.back()">Annuler</a>
+		</div>
+	
+		<form id="form" action="add-participant" method="post">
+			
+			<div class="mb-3">
+				<label for="firstName" class="form-label">Prénom</label>
+				<input type="text" class="form-control" name="firstName" required>
+			</div>
+
+			<div class="mb-3">
+				<label for="lastName" class="form-label">Nom</label>
+				<input type="text" class="form-control" name="lastName" required>
+			</div>
+			
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="email" class="form-control" name="email" required>
+			</div>
+			
+			<div class="mb-3">
+				<label for="birthDate" class="form-label">Date de naissance</label>
+				<input type="date" class="form-control" name="birthDate" required>
+			</div>
+			
+			<div class="mb-3">
+				<label for="organization" class="form-label">Organisation</label>
+				<input type="text" class="form-control" name="organization" required>
+			</div>
+			
+			<div class="mb-3">
+				<label for="observations" class="form-label">Observations</label>
+				<textarea style="resize:none;" class="form-control" name="observations" required form="form" rows="5" cols="30"></textarea>
+			</div>
+			
+			<div>
+				
+				<label class="mb-2" for="eventId">Evènement :</label>
+			
+				<select class="form-select mb-4" name="eventId" required>
+		             <option th:each="event : ${events}" th:value="${event.id}" th:text="${event.title}"/>
+		      	</select>
+		     </div>
+			
+			<input class="btn btn-primary" type="submit" value="Ajouter">
+		</form>
+	
+	</div>
+	
+	<div th:unless="${exists}" style="background-color: #79c6e5;width: fit-content;height:fit-content;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;" class="border border-dark rounded p-2 text-center">
+	   
+	   <!-- Si il n'existe pas d'evenement -->
+	   
+	   <h5>Il n'y a pas d'évènements où ajouter un participant.</h5>
+	   <p>Pour ajouter un évènement, <a href="/form-add-event">cliquez ici</a>.</p>
+	   <p>Pour revenir à l'accueil, <a href="/index">cliquez ici</a>.<p>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

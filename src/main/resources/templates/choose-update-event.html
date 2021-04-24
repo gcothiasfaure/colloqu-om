@@ -1,0 +1,36 @@
+<!-- Choix de l'évènement à modifier -->
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Colloqu'OM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+
+	<div style="width:50%;" class="container mt-5 mb-5">
+
+		<div class="mt-5 mb-3 d-flex justify-content-between">
+			<h2>Modifier un évènement</h2>
+			<a style="margin-top: 13px;" href="javascript:history.back()">Annuler</a>
+		</div>
+		
+		<form action="form-update-event" method="post">
+		
+			<label class="mb-2" for="eventId">évènement a modifier</label>
+			
+			<select class="form-select mb-4" name="eventId" required>
+	             <option th:each="event : ${events}" th:value="${event.id}" th:text="${event.title}"/>
+	      	</select>
+			
+			<input class="btn btn-primary" type="submit" value="Modifier">
+			
+		</form>
+	
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

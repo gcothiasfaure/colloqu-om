@@ -1,0 +1,32 @@
+<!-- Vue de succes d'une operation -->
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Colloqu'OM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+	<div style="background-color: #79c6e5;width: fit-content;height:fit-content;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;" class="border border-dark rounded p-2 text-center">
+		
+		<th:block th:switch="${param.query[0]}">
+		
+        	<h5 th:case="'event-add'">L'évènement a bien été ajouté.</h5>
+        	
+		    <h5 th:case="'participant-add'">Le participant a bien été ajouté.</h5>
+		       
+		    <h5 th:case="'event-del'">L'évènement a bien été supprimé.</h5>
+		        
+		    <h5 th:case="'event-update'">L'évènement a bien été modifié.</h5>
+	    
+		</th:block>
+		
+		<p>Pour revenir à l'accueil, <a href="/index">cliquez ici</a>.<p>
+		
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

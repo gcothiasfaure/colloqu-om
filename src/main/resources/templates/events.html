@@ -1,0 +1,71 @@
+<!-- Affichage de tous les événements (si il en existe) -->
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Colloqu'OM</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class=" container mt-5 mb-3 d-flex justify-content-between">
+		<h2>Liste des évènements</h2>
+		<a style="margin-top: 13px;" href="./index">Revenir à l'accueil</a>
+	</div>
+	
+	<div class="text-center container" th:if="${exists}">
+	
+		<!-- Si il existe des evenements -->
+	
+		<table class="table table-striped">
+		<thead>
+		    <tr>
+		      <th scope="col">Titre</th>
+		      <th scope="col">Thème</th>
+		      <th scope="col">Date de début</th>
+		      <th scope="col">Durée</th>
+		      <th scope="col">Nombre maximum de paricipants</th>
+		      <th scope="col">Description</th>
+		      <th scope="col">Organisateur</th>
+		      <th scope="col">Type</th>
+		    </tr>
+		 </thead>
+		  
+		   <tbody>
+			   <tr th:each="events: ${events}">
+			       <td th:text="${events.title}"/>
+			       <td th:text="${events.theme}"/>
+			       <td th:text="${events.startDate}"/>
+			       <td th:text="${events.duration}"/>
+				    <td th:text="${events.maxParticipants}"/>
+				    <td th:text="${events.description}"/>
+				    <td th:text="${events.organizer}"/>
+				    <td th:text="${events.eventType}"/>
+			   </tr>
+		   </tbody>
+		</table>
+	
+		<div class="d-flex justify-content-around mt-5">
+		
+			<!-- On propose a l'utilisateur de supprimer/modifier ces evenements que si il en existe -->
+		
+			<p>Pour supprimer un de ces évènements, <a href="/form-del-event">cliquez ici</a>.</p>
+			<p>Pour modifier un de ces évènements, <a href="/choose-update-event">cliquez ici</a>.</p>
+			<p>Pour ajouter un évènement, <a href="/form-add-event">cliquez ici</a>.</p>
+		</div>
+		
+	</div>
+	
+	<div class="text-center" th:unless="${exists}">
+	
+		<!-- Si il n'existe pas d'evenements -->
+		
+	   <h5 class="text-warning mb-3">Il n'y a pas d'évènements prévus.</h5>
+	   <p>Pour ajouter un événement, <a href="/form-add-event">cliquez ici</a>.</p>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
