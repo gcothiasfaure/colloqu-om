@@ -2,4 +2,4 @@
 
 Simple JEE application for a conference information system.
 
-**STACk** : Maven, PostgreSQL, Spring Boot, Hibernate, Bootstrap
+**STACK** : Maven, PostgreSQL, Spring Boot, Hibernate, Bootstrap
